@@ -1,0 +1,113 @@
+﻿@model Eskaney.Models.ManPowerCoust
+
+@{
+    ViewBag.Title = "ManPower Details";
+    Layout = "~/Areas/Housing_Projects/Views/Shared/_Home.cshtml";
+}
+
+@section Head{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#ManPower").addClass("active");
+            $(".AddManPower").addClass("active");
+
+            var Housing_ID = '@TempData["HousingID"]';
+
+        })
+
+        // Stop going back after log off
+        //debugger;
+        //if (window.history.forward(1) != null)
+        //    window.history.forward(1);
+        /*******************************/
+
+    </script>    
+    
+    
+    
+    
+}
+
+
+@section Body{
+
+    <h2>Details</h2>
+
+    <div>
+        <h4>ManPowerCoust</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.housing.Project_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.housing.Project_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Parson_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Parson_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Labour_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Labour_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Parson_Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Parson_Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Coust)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Coust)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Payment_Vaucher)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Payment_Vaucher)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Notes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Notes)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

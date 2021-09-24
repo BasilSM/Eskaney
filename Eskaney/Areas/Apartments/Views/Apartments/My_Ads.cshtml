@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Eskaney.Models.Apartment>
+@{
+    ViewBag.Title = "My_Ads";
+    Layout = "~/Areas/Housing_Projects/Views/Shared/_Home.cshtml";
+}
+
+@section Head{}
+
+@section Body{
+
+    <div class="mask rgba-gradient align-items-center">
+        <!-- Mask & flexbox options-->
+        <div class="" style="padding-top: 1px;">
+            <div class="container" style=" margin-top: 130px;">
+                <div class="row">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4">
+                            <!-- Card Wider -->
+                            <div class="card card-cascade wider" style="margin-bottom: 50px;">
+
+                                <!-- Card image -->
+                                <div class="view view-cascade overlay">
+                                    <img class="card-img-top" src="~/Image/blog/latest-6.jpg" alt="Card image cap">
+                                    <a href="#!">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+
+                                <!-- Card content -->
+                                <div class="card-body card-body-cascade text-center pb-0">
+
+                                    <!-- Title -->
+                                    <h4 class="card-title"><strong>Alison Belmont</strong></h4>
+                                    <!-- Subtitle -->
+                                    <h5 class="blue-text pb-2"><strong style="color: mediumblue;">Graffiti Artist</strong></h5>
+                                    <hr />
+                                    <!-- Text -->
+                                    <p class="card-text">
+                                        About This Apartment..
+
+                                        @Html.DisplayFor(modelItem => item.Notes)
+
+                                    </p>
+
+
+
+                                    <p>Apart. Area : @Html.DisplayFor(modelItem => item.Area) M<sup>2</sup></p>
+                                    <p>Apart. Floor Number : @Html.DisplayFor(modelItem => item.Floor_Number)</p>
+                                    @*<p>@Html.DisplayFor(modelItem => item.Housing_ID)</p>*@
+                                    <p>Apart. Number of Room : @Html.DisplayFor(modelItem => item.Number_Of_Room)</p>
+                                    <p>Apart. Number of Bathroom : @Html.DisplayFor(modelItem => item.Number_Of_BathRoom)</p>
+
+                                    City : <lable id="txtCity"></lable><br />
+                                    Location : <lable id="txtLocation"></lable><br /><hr />
+                                    Phone : @Html.DisplayFor(modelItem => item.Phone)
+
+
+                                    <!-- Card footer -->
+                                    <div class="card-footer text-muted text-center mt-4">
+                                        <!-- Mobile -->
+                                        <a class="px-2 fa-lg li-ic"><i class="fas fa-mobile-alt"></i></a>
+                                        <!-- SMS -->
+                                        <a class="px-2 fa-lg tw-ic"><i class="fas fa-sms"></i></a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- Card Wider -->
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+

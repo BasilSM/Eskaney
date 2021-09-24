@@ -1,0 +1,140 @@
+﻿@*@model IEnumerable<Eskaney.Models.Housing>*@
+@model Eskaney.Models.ViewModel
+
+@{
+    ViewBag.Title = "Chose Project";
+    Layout = "~/Areas/Home/Views/Shared/_Home.cshtml";
+}
+
+@section Head{
+
+
+    <link href="~/Areas/Home/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/fonts/iconic/css/material-design-iconic-font.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/animate/animate.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/animsition/css/animsition.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/select2/select2.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+
+
+    <link href="~/Areas/Home/css/util.css" rel="stylesheet" />
+    <link href="~/Areas/Home/css/main.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+
+
+
+    <style>
+        @@media (min-width: 768px) {
+            .col-md-5 {
+                -ms-flex: 0 0 41.666667%;
+                flex: 0 0 41.666667%;
+                max-width: 37.666667%;
+            }
+        }
+
+        @@media (min-width: 992px) {
+
+            .col-lg-3 {
+                -ms-flex: 0 0 25%;
+                flex: 0 0 25%;
+                max-width: 24%;
+            }
+        }
+
+    </style>
+
+
+    <script type="text/javascript">
+        // Stop going back after log off
+        //debugger;
+        //if (window.history.forward(1) != null)
+        //    window.history.forward(1);
+        /*******************************/
+
+
+    </script>
+
+
+}
+
+@section Body{
+
+
+    <!-- Full Page Intro -->
+    <div class="" style="
+        background-image: url('../../../../Image/architecture.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-gradient align-items-center">
+
+            <div class="container">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="white-text text-center text-md-left mt-xl-8 mb-5 wow fadeInLeft" data-wow-delay="0.3s" style="margin-top: 90px">
+                        <!--Grid column-->
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-5 col-5 offset-lg-1 offset-md-0 offset-2">
+                                    <h3 style="width: 150%;padding-top: 30px;">@TempData["CompanyName"] Company</h3>
+                                </div>
+                                <div class="col-lg-0" style="text-align:center">
+                                    @*<h2><img src="@TempData["Logo"]" alt="Alternate Text" width="30" height="50" style=" width: 30%;height: 50%;" /></h2>*@
+                                </div>
+                                <div class="col-lg-1 col-md-1 offset-md-3" style="text-align:center;margin-top: 30px">
+                                    <a href="@Url.Action("Create", "Housings", new { id = TempData["CompanyID"] })" class="btn btn-primary btn-rounded btn-md" title="Click Here To Add New Company">
+                                        <i class="fas fa-plus-circle" style="font-size: 170%"></i>
+                                        <span style="font-size: large;">New Project</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                           
+
+
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                @foreach (var item in Model.List_Of_Housings)
+                                {
+                                    <div class="card col-lg-3 col-md-5 col-sm-10 col-9 wrap-login100" style="color: black;background-color: #8ec4e8;background-image: linear-gradient(0deg, #140e4ebd 0%, #041f3aad 84%)">
+                                        <div class="card-body">
+                                            <span class="login100-form-logo">
+                                                @*<img src="@Url.Content(item.Logo)" alt="Alternate Text" width="50" height="50" />*@
+                                                <img src="~/Image/kindpng_2190861.png" alt="Alternate Text" width="85" height="85" />
+                                            </span>
+                                            <h5 class="card-title" style="text-align:center;color: white;margin-top: 20px;">@item.Project_Name</h5>
+                                            <hr />
+                                            <p class="card-text" style="color:white; text-align:center;">Location : @item.Location <br /> Date : @item.Date.Day / @item.Date.Month / @item.Date.Year </p>
+
+                                            <br />
+
+
+                                            <div class="row">
+                                                <small class="text-muted offset-4">
+                                                    <a href="@Url.Action("Home_Page", "Housings", new { id = item.ID })" class="btn btn-primary btn-md" style="font: -webkit-small-control;">
+                                                        Go
+                                                    </a>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+}

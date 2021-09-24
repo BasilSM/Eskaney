@@ -1,0 +1,128 @@
+﻿@model Eskaney.Models.Material_Expenses
+
+@{
+    ViewBag.Title = "Edit Material";
+    Layout = "~/Areas/Housing_Projects/Views/Shared/_Home.cshtml";
+}
+
+@section Head{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#Material").addClass("active");
+
+
+            var Housing_ID = '@TempData["HousingID"]';
+        })
+
+        // Stop going back after log off
+        //debugger;
+        //if (window.history.forward(1) != null)
+        //    window.history.forward(1);
+        /*******************************/
+    </script>
+
+}
+
+@section Body{
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="container">
+            <div class="row col-xl-12" style="margin: 0;">
+                <img class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-4 offset-5" src="~/Image/AddMaterial.png" style="width: 80px;margin-top: 40px;" />
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header"><h4 style="cursor: default;"><i style="margin-right: 20px;" class="fas fa-wrench"></i>Edit Material</h4></div>
+            <div class="card-body">
+                <div class="row" style="margin: 0px 0px;width: 90%;">
+                    <div class="md-form form-lg col-lg-3 col-md-6 col-sm-4 col-6 offset-lg-2">
+                        @Html.EditorFor(model => model.Material_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Material_Name, "", new { @class = "text-danger" })
+                        @*<input type="text" id="form1" class="form-control form-control-lg">
+                            <label for="form1">Material Name</label>*@
+                        <label for="form1">Material Name</label>
+                    </div>
+                    <div class="md-form form-lg col-lg-3 col-md-6 col-sm-4 col-6 offset-lg-1">
+                        @Html.EditorFor(model => model.Material_Source, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Material_Source, "", new { @class = "text-danger" })
+                        @*<input type="text" id="form1" class="form-control form-control-lg">
+                            <label for="form1">Material Exporter</label>*@
+                        <label for="form1">Material Source</label>
+                    </div>
+                </div>
+                <div class="row" style="margin: 0px 0px;width: 90%;">
+                    <div class="md-form form-lg col-lg-3 col-md-6 col-sm-4 col-6 offset-lg-2">
+                        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                        @*<input type="text" id="form1" class="form-control form-control-lg">
+                            <label for="form1">Quantity</label>*@
+                        <label for="form1">Quantity</label>
+                    </div>
+                    <div class="md-form form-lg col-lg-3 col-md-6 col-sm-4 col-6 offset-lg-1">
+                        @Html.TextBoxFor((a => a.Date), htmlAttributes: new { @class = "form-control form-control-lg", @id = "txtDate" })
+                        @*<input type="date" id="txtDate" class="form-control form-control-lg">*@
+                    </div>
+                </div>
+                <div class="row" style="margin: 0px 0px;width: 90%;">
+                    <div class="md-form form-lg col-lg-3 col-md-6 col-sm-4 col-6 offset-lg-2">
+                        @Html.EditorFor(model => model.Coust, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Coust, "", new { @class = "text-danger" })
+                        @*<input type="text" id="form1" class="form-control form-control-lg">
+                            <label for="form1">Coust</label>*@
+                        <label for="form1">Coust</label>
+                    </div>
+                    <div class="md-form form-lg col-lg-3 col-md-6 col-sm-4 col-6 offset-lg-1">
+                        @Html.EditorFor(model => model.EnvoiceNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EnvoiceNumber, "", new { @class = "text-danger" })
+                        @*<input type="text" id="form1" class="form-control form-control-lg">
+                            <label for="form1">Notes</label>*@
+                        <label for="form1">Envoice Number</label>
+                    </div>
+                </div>
+
+                <div class="row" style="margin: 0px 0px;width: 90%;">
+                    <div class="md-form form-lg col-lg-3 col-md-6 col-sm-4 col-6 offset-lg-2">
+                        @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                        @*<input type="text" id="form1" class="form-control form-control-lg">
+                            <label for="form1">Notes</label>*@
+                        <label for="form1">Notes</label>
+                    </div>
+                    @*<div class="row" style="margin: 0px 0px;width: 90%;">
+                        <div class="md-form form-lg col-xl-4 col-lg-3 col-md-6 col-sm-4 col-6 offset-lg-2">
+                            @Html.TextBoxFor((a => a.Material_Expenses.Housing_ID), htmlAttributes: new { @class = "form-control form-control-lg", @id = "txtHousing_ID" })
+                            @Html.ValidationMessageFor(a => a.Material_Expenses.Housing_ID)
+                            <label for="form1">Project</label>
+                        </div>
+                                </div>*@
+                </div>
+                <div class="row" style="margin: 0px 0px;width: 90%;">
+                    <div class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-2 offset-4">
+                        <input id="btnSave" type="submit" class="btn blue-gradient" name="btnSave" value="Save" style="border-radius: 15px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="~/Areas/Material_Expenses/js/Add_Material_JS.js"></script>
+
+
+
+
+
+
+    }
+}
+
+
+

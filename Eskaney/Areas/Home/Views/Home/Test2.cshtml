@@ -1,0 +1,78 @@
+﻿@*@model Eskaney.Models.ManPowerCoust*@
+@model Eskaney.Models.ViewModel
+@{
+    ViewBag.Title = "Test2";
+    Layout = "~/Areas/Home/Views/Shared/_Home.cshtml";
+}
+@section Head{
+
+    <style>
+        /* Extra small devices (portrait phones, less than 576px) */
+        @@media (max-width: 575.98px) {
+        }
+
+        /* Small devices (landscape phones, 576px and up)*/
+        @@media (min-width: 576px) and (max-width: 767.98px) {
+        }
+
+        /* Medium devices (tablets, 768px and up)*/
+        @@media (min-width: 768px) and (max-width: 991.98px) {
+        }
+
+        /* Large devices (desktops, 992px and up)*/
+        @@media (min-width: 992px) and (max-width: 1199.98px) {
+        }
+
+        /* Extra large devices (large desktops, 1200px and up)*/
+        @@media (min-width: 1200px) {
+        }
+
+
+        /*=========================
+         Icons
+        ================= */
+
+    </style>
+
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+}
+
+@section Body{
+    <br />
+    <br />
+    <br />
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+        Launch static backdrop modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Tooltip on right">
+        Tooltip on right
+    </button>
+
+}
+

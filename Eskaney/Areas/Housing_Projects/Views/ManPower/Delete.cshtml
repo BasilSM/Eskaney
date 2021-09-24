@@ -1,0 +1,130 @@
+﻿@model Eskaney.Models.ManPowerCoust
+
+@{
+    ViewBag.Title = "Delete ManPower";
+    Layout = "~/Areas/Housing_Projects/Views/Shared/_Home.cshtml";
+}
+
+@section Head{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#ManPower").addClass("active");
+
+            var Housing_ID = '@TempData["HousingID"]';
+
+        })
+
+        // Stop going back after log off
+        //debugger;
+        //if (window.history.forward(1) != null)
+        //    window.history.forward(1);
+        /*******************************/
+    </script>
+
+}
+
+
+
+@section Body{
+
+    <div class="container">
+        <div class="row col-xl-12" style="margin: 0;">
+            <img class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-4 offset-5" src="~/Image/AddMaterial.png" style="width: 80px;margin-top: 40px;" />
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header"><h4 style="cursor: default;"><i style="margin-right: 20px;" class="fas fa-trash"></i>Delete ManPower</h4></div>
+        <div class="card-body">
+            <h3 style="padding: 10px 80px 40px 80px;">Are you sure you want to delete this?</h3>
+            <div class="row" style="margin: 0px 0px;width: 90%;">
+                <div class="col-lg-2 offset-lg-2">
+                    <label style="font-weight: bolder">@Html.DisplayName("Project Name :")</label>
+                </div>
+                <div class="col-lg-3">
+                    @Html.DisplayFor(model => model.housing.Project_Name, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="col-lg-2">
+                    <label style="font-weight: bolder">@Html.DisplayName("Person Name :")</label>
+                </div>
+                <div class="col-lg-3">
+                    @Html.DisplayFor(model => model.Parson_Name, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="row" style="margin: 0px 0px;width: 90%;">
+                <div class="col-lg-2 offset-lg-2">
+                    <label style="font-weight: bolder">@Html.DisplayName("Labour Name :")</label>
+                </div>
+                <div class="col-lg-3">
+                    @Html.DisplayFor(model => model.Labour_Name, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="col-lg-2">
+                    <label style="font-weight: bolder">@Html.DisplayName("Person Phone :")</label>
+                </div>
+                <div class="col-lg-3">
+                    @Html.DisplayFor(model => model.Parson_Phone, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="row" style="margin: 0px 0px;width: 90%;">
+                <div class="col-lg-2 offset-lg-2">
+                    <label style="font-weight: bolder">@Html.DisplayName("Date :")</label>
+                </div>
+                <div class="col-lg-3">
+                    @Html.DisplayFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="col-lg-2">
+                    <label style="font-weight: bolder">@Html.DisplayName("Coust :")</label>
+                </div>
+                <div class="col-lg-3">
+                    @Html.DisplayFor(model => model.Coust, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="row" style="margin: 0px 0px;width: 90%;">
+                <div class="col-lg-2 offset-lg-2">
+                    <label style="font-weight: bolder">@Html.DisplayName("Payment Vaucher :")</label>
+                </div>
+                <div class="col-lg-3">
+                    @Html.DisplayFor(model => model.Payment_Vaucher, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="col-lg-2">
+                    <label style="font-weight: bolder">@Html.DisplayName("Notes :")</label>
+                </div>
+                <div class="col-lg-3">
+                    @Html.DisplayFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row" style="margin: 0px 0px;width: 90%;">
+                    <div class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-2 offset-4">
+                        <input id="btnDelete" type="submit" class="btn blue-gradient" name="btnSave" value="Delete" style="border-radius: 15px" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+    <script src="~/Areas/Material_Expenses/js/Add_Material_JS.js"></script>
+
+
+
+
+
+}

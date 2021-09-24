@@ -1,0 +1,310 @@
+﻿@model Eskaney.Models.ViewModel
+@using Eskaney.Models
+@{
+    ViewBag.Title = "Housing Info";
+    Layout = "~/Areas/Housing_Projects/Views/Shared/_Home.cshtml";
+}
+
+@section Head{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            debugger
+            $("#Info").addClass("active");
+
+
+            var test = '@TempData["CompanyName"]';
+
+
+            debugger
+            var Housing_ID = '@TempData["HousingID"]';
+
+
+
+            var xx = 564654654665;
+            console.log(xx.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+
+
+
+            //$.ajax({
+            //    type: 'get',
+            //    url: '/Housings/TotalExpManPower?id=x'.replace('x', Housing_ID),
+            //    dataType: 'json',
+
+            //    success: function (data) {
+            //        debugger
+            //        alert("Success");
+            //    },
+            //    error: function () {
+            //        debugger
+            //        alert("Error");
+            //    }
+            //});
+
+            $(".hover").mouseenter(function () {
+                $(this).css("color", "blue");
+                $(this).css("font-size", "25px");
+                $(this).css("cursor", "pointer");
+                $("#Dis").css("color", "red");
+            });
+            $(".hover").mouseleave(function () {
+                $(this).css("color", "black");
+                $(this).css("font-size", "1rem");
+                $("#Dis").css("color", "black");
+            });
+
+
+
+
+            @*$("#btnTest").click(function () {
+                var manPowerName = $("#test2").val();
+                debugger
+                $.ajax({
+                    type: 'get',
+                    url: '@Url.Action("SomeSelectedManpowerCosts", "Housings")',
+                    data: { id: Housing_ID, name: manPowerName },
+                    dataType: 'json',
+                    success: function (data) {
+
+                        console.log("OK");
+                        var tt = data.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + " JD";
+                        $("#test").html(tt);
+                    },
+                    error: function () {
+                        console.log("error")
+                    }
+                });*@
+
+
+            $.ajax({
+                type: 'get',
+                //url: '/Housings/FillHousing_Info?id=x'.replace('x', Housing_ID),
+                url: '@Url.Action("FillHousing_Info", "Housings")',
+                data: { id: Housing_ID },
+                dataType: 'json',
+                success: function (data) {
+
+                    debugger;
+                    /* This for design money style */
+                    var txtLandPrice = (data[0].Land_Price).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                    var txtLandRegistration = (data[0].Land_Registration).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                    var txtBuildingLicence = (data[0].Building_Licence).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                    var txtDesignAndEngineering = (data[0].DesignAndEngineering).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                    var txtSupervision = (data[0].Supervision).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+
+                    // Format Date
+                    var txtDate = new Date(parseInt((data[0].Date).substr(6)));
+                    var day = txtDate.getDate();
+                    if (day < 10) {
+                        day = "0" + day
+                    }
+                    var month = (txtDate.getMonth() + 1);
+                    if (month < 10) {
+                        month = "0" + month
+                    }
+                    var year = txtDate.getFullYear();
+                    const FinalDate = day + " / " + month + " / " + year;
+
+
+                    $("#txtProjectName").html(data[0].Project_Name);
+                    $("#txtPieceNumber").html(data[0].Piece_Number);
+                    $("#txtLocation").html(data[0].Location);
+                    $("#txtDate").html(FinalDate);
+                    $("#txtApartmentsTotalArea").html(data[0].Apartments_Total_Area);
+                    $("#txtBuildingArea").html(data[0].Building_Area);
+                    $("#txtLandArea").html(data[0].Land_Area);
+                    $("#txtBasinNumber").html(data[0].Basin_Number);
+                    $("#txtNumberOfFloors").html(data[0].Number_Of_Floors);
+                    $("#txtNumberOfApartment").html(data[0].Number_Of_Apartment);
+                    $("#txtLandPrice").html(txtLandPrice);
+                    $("#txtLandRegistration").html(txtLandRegistration);
+                    $("#txtBuildingLicence").html(txtBuildingLicence);
+                    $("#txtDesignAndEngineering").html(txtDesignAndEngineering);
+                    $("#txtSupervision").html(txtSupervision);
+                    $("#txtNotes").html(data[0].Notes);
+                },
+                error: function () {
+                    alert("Error In FillHousing_Info  Js :( ");
+                }
+
+            });
+        });
+
+
+
+
+            // Stop going back after log off
+            debugger;
+            //if (window.history.forward(1) != null)
+            //    window.history.forward(1);
+            /*******************************/
+
+    </script>
+
+}
+
+@section Body{
+
+    <form action="Housings_Info" method="get">
+        <div class="container">
+            <div class="row col-xl-12" style="margin: 0;">
+                <img class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5 offset-4" src="~/Image/kindpng_75446.png" style="width: 200px;margin-top: 40px;" />
+            </div>
+        </div>
+
+        <h1 id="test"></h1>
+
+        <div class="card mb-4" style="background-image: url('../../../../Image/architecture.jpg');background-repeat: no-repeat; background-size: cover;background-position: center center;">
+            <div class="card-header"><h4 style="cursor: default;"><i style="margin-right: 20px;" class="fa fa-info" aria-hidden="true"></i><span class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-4 offset-3">Informations</span></h4></div>
+            <div class="card-body">
+                <main>
+                    <div class="container-fluid">
+
+                        <div class="row" style="margin:30px 0px 0px 0px">
+                            <div class="col-xl-3 col-md-6 hover">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Project Name</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtProjectName"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Piece Number</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtPieceNumber"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Location <i class="fa fa-map" aria-hidden="true"></i></h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtLocation"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Date</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtDate"></span>
+                                        @Html.DisplayFor(model => model.Housing.Date)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin:0px">
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Apart. Total Area</h5></div>
+                                    <div class="card-footer">
+                                        <span id="txtApartmentsTotalArea"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Building Area</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtBuildingArea">‏</span> M<sup>2</sup>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Land Area</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtLandArea">‏</span> M<sup>2</sup>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Basin Number</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtBasinNumber"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin:30px 0px 0px 0px">
+                            <div class="col-xl-3 col-md-6 hover">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Number Of Floors</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtNumberOfFloors"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Num. Of Apart.</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtNumberOfApartment"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Land Price</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtLandPrice"></span> JD
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Land Registration</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtLandRegistration"></span> JD
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin:30px 0px 0px 0px">
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Building Licence</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtBuildingLicence"></span> JD
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Design And Eng.</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtDesignAndEngineering"></span> JD
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 hover" style="text-align: center;">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Supervision</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtSupervision"></span> JD
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 hover">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body" style="text-align:center;"><h5>Notes</h5></div>
+                                    <div class="card-footer" style="text-align:center;">
+                                        <span id="txtNotes"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+            </div>
+        </div>
+    </form>
+
+
+
+}

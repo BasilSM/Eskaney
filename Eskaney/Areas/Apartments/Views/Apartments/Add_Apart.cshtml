@@ -1,0 +1,95 @@
+﻿@model Eskaney.Models.Apartment
+
+@{
+    ViewBag.Title = "Add_Apart";
+    Layout = "~/Areas/Housing_Projects/Views/Shared/_Home.cshtml";
+}
+
+@section Head{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#Apartments").addClass("active");
+
+            var test = '@TempData["CompanyName"]'
+
+            debugger
+            var Housing_ID = '@TempData["HousingID"]';
+        })
+    </script>
+
+    <style>
+        input {
+            margin-top: 20px;
+        }
+    </style>
+}
+
+@section Body{
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <form action="Add_Apart" method="post">
+            <div class="container">
+                <div class="row col-xl-12" style="margin: 0;">
+                    <img class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5 offset-5" src="~/Image/AddLabour.png" style="width: 100px;margin-top: 40px;" />
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header"><h4 style="cursor: default;"><i style="margin-right: 20px;" class="fas fa-plus-circle"></i>Add Apartment</h4></div>
+                <div class="card-body">
+
+                    <div class="row" style="margin: 0px 0px;width: 90%;">
+                        <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-2 offset-sm-2">
+                            @Html.TextBoxFor(a => a.Area, new { htmlAttributes = new { @id = "txtArea", @class = "form-control" } })
+                            @Html.ValidationMessageFor(a => a.Area, "", new { @class = "text-danger" })
+                            <label for="txtArea">Area</label>
+                        </div>
+                        <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-1 offset-sm-1">
+                            @Html.TextBoxFor(a => a.Floor_Number, new { htmlAttributes = new { @id = "txtFloorNumber", @class = "form-control" } })
+                            @Html.ValidationMessageFor(a => a.Floor_Number, "", new { @class = "text-danger" })
+                            <label for="txtFloorNumber">Floor Number</label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 0px 0px;width: 90%;">
+                        <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-2 offset-sm-2">
+                            @Html.TextBoxFor(a => a.Number_Of_Room, new { htmlAttributes = new { @id = "txtNumberOfRoom", @class = "form-control" } })
+                            @Html.ValidationMessageFor(a => a.Number_Of_Room, "", new { @class = "text-danger" })
+                            <label for="txtNumberOfRoom">Number Of Room</label>
+                        </div>
+                        <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-1 offset-sm-1">
+                            @Html.TextBoxFor(a => a.Number_Of_BathRoom, new { htmlAttributes = new { @id = "txtNumberOfBathRoom", @class = "form-control" } })
+                            @Html.ValidationMessageFor(a => a.Number_Of_BathRoom, "", new { @class = "text-danger" })
+                            <label for="txtNumberOfBathRoom">Number Of BathRoom</label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 0px 0px;width: 90%;">
+                        <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-2 offset-sm-2">
+                            @Html.TextBoxFor(a => a.Price, new { htmlAttributes = new { @id = "txtPrice", @class = "form-control" } })
+                            @Html.ValidationMessageFor(a => a.Price, "", new { @class = "text-danger" })
+                            <label for="txtPrice">Coust</label>
+                        </div>
+                        <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-1 offset-sm-1">
+                            @Html.TextBoxFor(a => a.Notes, new { htmlAttributes = new { @id = "txtNotes", @class = "form-control" } })
+                            @Html.ValidationMessageFor(a => a.Notes, "", new { @class = "text-danger" })
+                            <label for="txtNotes">Notes</label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 0px 0px;width: 90%;margin-bottom: 10px;">
+                        <div class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5 offset-4">
+                            <input id="btnSave" type="submit" class="btn blue-gradient" name="Save" value="Add" style="border-radius: 15px" />
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+    }
+}
+

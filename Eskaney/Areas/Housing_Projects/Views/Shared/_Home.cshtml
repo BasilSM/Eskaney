@@ -1,0 +1,309 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>@ViewBag.Title</title>
+
+    @*<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">*@
+    <link href="~/Scripts/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+    <link rel="icon" type="image/png" href="~/Areas/Home/images/favicon.ico" />
+    <link href="~/Areas/Admin_Page/css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+
+
+
+    <!-- for mdb for bootstrab-->
+    <link href="~/Content/mdb.min.css" rel="stylesheet" />
+
+    <style>
+        @@import url(https://fonts.googleapis.com/css?family=Oswald:300,400);
+
+
+
+        #currentTime, #currentDate {
+            font-size: 1em;
+            text-align: center;
+            font-weight: 300;
+            color: white;
+            margin: 100px auto;
+        }
+
+        .sb-sidenav .sb-sidenav-menu .nav .sb-sidenav-menu-heading {
+            font-size: 20px;
+        }
+    </style>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            clock();
+            debugger
+            var today = new Date();
+            let todayDate = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+            $("#currentDate").html(todayDate);
+        })
+
+        function clock() {
+            var now = new Date();
+            var TwentyFourHour = now.getHours();
+            var hour = now.getHours();
+            var min = now.getMinutes();
+            var sec = now.getSeconds();
+            var mid = 'pm';
+            if (min < 10) {
+                min = "0" + min;
+            }
+            if (hour > 12) {
+                hour = hour - 12;
+            }
+            if (hour == 0) {
+                hour = 12;
+            }
+            if (TwentyFourHour < 12) {
+                mid = 'am';
+            }
+            document.getElementById('currentTime').innerHTML = hour + ':' + min + ':' + sec + ' ' + mid;
+            setTimeout(clock, 1000);
+        }
+
+        // Stop going back after log off
+        debugger;
+        if (window.history.forward(1) != null)
+            window.history.forward(1);
+        /*******************************/
+
+    </script>
+
+    @RenderSection("Head")
+
+</head>
+<body class="sb-nav-fixed">
+
+    <div class="mask rgba-gradient align-items-center">
+        <nav class="row sb-topnav navbar navbar-expand navbar-dark bg-dark" style="margin-top: 0px;width: 100%;margin-left: 0;font-style: italic;height: 60px;">
+            <button class="navbar-toggle" id="sidebarToggle" href="#" style="background-color: #002f46;padding-top: 4px;border-radius: 7px;">
+                <i class="fas fa-align-justify" style="font-size: large;"></i>
+            </button>
+
+            <div class="col-4 d-none d-xl-block d-lg-block d-md-block">
+                <a class="navbar-brand" href="#" style="padding: 0; margin-bottom: -10px;">
+                    <h1 style="font-family: 'Comic Sans MS', cursive, sans-serif;font-style: italic; color:white;font-size: 1.5rem;">
+                        Eskaney
+                    </h1>
+
+                </a>
+                @*<a class="navbar-brand" style="font-size: 2.5rem;">Eskaney</a>*@
+            </div>
+
+            <div class="col-xl-2 col-4 offset-6"><span id="currentTime"></span><br /><span id="currentDate"></span></div>
+
+            <div class="col-lg-6 offset-lg-0 col-md-2 offset-2 offset-md-3 col-3 d-flex flex-lg-row-reverse flex-xl-row-reverse flex-md-row-reverse">
+                <h1 style="font-family: 'Comic Sans MS', cursive, sans-serif;font-style: italic; color:white;font-size: 1.5rem;">
+                    Eskaney
+                    @*<img src="~/Image/HomePage.png" style="width: 150px;" />*@
+                </h1>
+                @*<a class="navbar-brand" style="font-size: 2.5rem;">Eskaney</a>*@
+            </div>
+
+        </nav>
+
+
+        <!--Navbar-->
+
+
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="margin-top: 0PX;padding-top: 35px;">
+
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading" style="text-align: center;padding: 60px 20px 20px 10px;">
+
+                                @*<img src="@ViewBag.Logo" style="width: 70px;" />*@
+                                @*<img src="~/Image/Eskaney.png" />*@
+                                @*<img src="~/Image/HomePage.png" style="width: 150px;" />*@
+                                <img src="~/Image/Eskaney-White.png" style="width: 170px;" />
+                            </div>
+                            <a href="@Url.Action( "Home_Page", "Housings", new { area = "Housing_Projects", id = ViewBag.ID })" class="nav-link AddLabour">
+                                <i class="fas fa-home" style="margin-right: 20px;"></i>
+                                Home
+                            </a>
+
+                            <a id="projects" class="nav-link" href="@Url.Action("Chose_Project", "Housings", new { area = "Housing_Projects", id = TempData["CompanyID"]})">
+                                <i style="margin-right: 20px;" class="fas fa-sign-out-alt"></i>
+                                Projects
+                            </a>
+                            @*<a id="HomeAdmin" class="nav-link collapsed" data-toggle="collapse" aria-expanded="false">
+            <i class="fas fa-home" style="margin-right: 20px;"></i>
+            Home
+        </a>*@
+
+
+                            <div class="sb-sidenav-menu-heading">Expenses</div>
+                            <a id="ManPower" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLabour" aria-expanded="false" aria-controls="collapseLayouts">
+                                <i class="fas fa-tools" style="margin-right: 20px;"></i>
+                                ManPower
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+
+                            <div class="collapse" id="collapseLabour" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+
+
+                                    <a href="@Url.Action( "Add_ManPower", "ManPower", new { area = "Housing_Projects", id = ViewBag.ID })" class="nav-link">
+
+                                        <i style="margin-right: 20px;" class="fas fa-plus-circle"></i>
+                                        Add ManPower
+                                    </a>
+                                    <a href="@Url.Action( "ManPower_Details", "ManPower", new { area = "Housing_Projects", id = ViewBag.ID })" class="nav-link">
+                                        <i style="margin-right: 20px;" class="fas fa-info-circle"></i>
+                                        ManPower Details
+                                    </a>
+                                </nav>
+                            </div>
+
+
+
+                            <a id="Material" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaterial" aria-expanded="false" aria-controls="collapsePages">
+                                <i class="fas fa-hammer" style="margin-right: 20px;"></i>
+                                Materials
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseMaterial" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a href="@Url.Action( "Add_Material", "Material", new { area = "Housing_Projects", id = ViewBag.ID })" class="nav-link collapsed">
+                                        <i style="margin-right: 20px;" class="fas fa-plus-circle"></i>
+                                        Add Materials
+                                    </a>
+                                    <a href="@Url.Action( "Material_Details", "Material", new { area = "Housing_Projects", id = ViewBag.ID })" class="nav-link collapsed">
+                                        <i style="margin-right: 20px;" class="fas fa-info-circle"></i>
+                                        Materials Details
+                                    </a>
+                                </nav>
+                            </div>
+
+
+                            <div class="sb-sidenav-menu-heading">Informations</div>
+
+                            <a id="Info" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInfo" aria-expanded="false" aria-controls="collapsePages">
+                                <i class="fas fa-info-circle" style="margin-right: 20px;"></i>
+                                Informations
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseInfo" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a href="@Url.Action( "Housing_Info", "Housings", new { area = "Housing_Projects", id = TempData["HousingID"] })" class="nav-link collapsed">
+                                        <i style="margin-right: 20px;" class="fas fa-info"></i>
+                                        Housing Info.
+                                    </a>
+                                    <a href="@Url.Action( "Costs_Info", "Housings", new { area = "Housing_Projects", id = ViewBag.ID })" class="nav-link collapsed">
+                                        <i style="margin-right: 20px;" class="fas fa-info"></i>
+                                        Costs Info.
+                                    </a>
+                                    <a href="@Url.Action( "Adver_Home", "Apartments", new { area = "Apartments", id = ViewBag.ID })" class="nav-link collapsed">
+                                        <i style="margin-right: 20px;" class="fas fa-table"></i>
+                                        Adver.
+                                    </a>
+                                </nav>
+                            </div>
+
+
+                            <div class="sb-sidenav-menu-heading">Advertisement</div>
+
+                            <a id="Apartments" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Apart" aria-expanded="false" aria-controls="collapsePages">
+                                <i class="fas fa-info-circle" style="margin-right: 20px;"></i>
+                                Apartments
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="Apart" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a href="@Url.Action( "Add_Apart", "Apartments", new { area = "Apartments", id = TempData["HousingID"] })" class="nav-link collapsed">
+                                        <i style="margin-right: 20px;" class="fas fa-info"></i>
+                                        Add Apartment
+                                    </a>
+                                    <a href="@Url.Action( "My_Ads", "Apartments", new { area = "Apartments", id = ViewBag.ID })" class="nav-link collapsed">
+                                        <i style="margin-right: 20px;" class="fas fa-info"></i>
+                                        My ads.
+                                    </a>
+                                </nav>
+                            </div>
+
+
+
+
+
+                            <div class="sb-sidenav-menu-heading">Logout</div>
+                            <div>
+                                <a href="@Url.Action("Logout" , "Home", new { area = "Home"})" class="nav-link">
+                                    <i style="margin-right: 20px;" class="fas fa-sign-out-alt"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        @TempData["CompanyName"] Company
+
+                    </div>
+
+                </nav>
+            </div>
+
+
+            <div id="layoutSidenav_content">
+                <main style="margin-top: -20px;">
+                    <div class="container-fluid">
+                        @RenderSection("Body")
+                    </div>
+                </main>
+
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Eskaney 2020</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script src="~/Areas/Admin_Page/JS/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+
+    <script src="~/Areas/Admin_Page/src/assets/demo/chart-area-demo.js"></script>
+    <script src="~/Areas/Admin_Page/src/assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script src="~/Areas/Admin_Page/src/assets/demo/datatables-demo.js"></script>
+
+    <!-- for mdb for bootstrab-->
+    <script src="~/Scripts/mdb.min.js"></script>
+
+    <script src="~/Areas/js/Eskaney.js"></script>
+
+
+</body>
+</html>

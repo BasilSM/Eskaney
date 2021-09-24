@@ -1,0 +1,231 @@
+﻿@model Eskaney.Models.ViewModel
+@*@model Eskaney.Models.ManPowerCoust*@
+@using Eskaney.Models
+
+@{
+    ViewBag.Title = "Costs_Info";
+    Layout = "~/Areas/Housing_Projects/Views/Shared/_Home.cshtml";
+}
+
+@section Head{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            debugger
+            $("#Info").addClass("active");
+
+            var test = '@TempData["CompanyName"]';
+
+            $('#dtManPower').DataTable();
+            $('#dtMaterial').DataTable();
+
+            $('.dataTables_length').addClass('bs-select');
+
+
+            debugger
+            var Housing_ID = '@TempData["HousingID"]';
+
+
+            // Total Expenses For ManPower  مجموع مصاريف العمال للمشروع
+            var TotalExManPower = (@ViewBag.TotalExpForManPower).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            $("#txtTotalExpForManPower").html(TotalExManPower + " JD");
+
+            // Total Expenses For Material  مجموع مصاريف المواد للمشروع
+            var TotalExMat = (@ViewBag.TotalExpForMaterial).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            $("#txtTotalExpForMaterial").html(TotalExMat + " JD");
+
+            // Total Expenses For the Housing Project  مجموع المصاريف للمشروع
+            var TotalExp = (@ViewBag.TotalExpenses).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            $("#txtTotalExpenses").html(TotalExp + " JD");
+
+
+            
+
+        });
+
+
+
+    </script>
+
+    <style>
+
+        #dtManPower_filter label input, #dtMaterial_filter label input {
+            width: 68%;
+        }
+
+        .container {
+            padding: 0px;
+        }
+
+        @@media (max-width: 320px) {
+            .TotalEx {
+                width: 250px;
+                margin-left: -30px;
+            }
+        }
+    </style>
+
+}
+
+@section Body{
+    <form action="Housings" method="get">
+        <div class="container">
+            <div class="row col-xl-12" style="margin: 0;">
+                <img class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5 offset-4" src="~/Image/kindpng_75446.png" style="width: 200px;margin-top: 40px;" />
+            </div>
+        </div>
+
+
+        <div class="card mb-4" style="background-image: url('../../../../Image/architecture.jpg');background-repeat: no-repeat; background-size: cover;background-position: center center;">
+            <div class="card-header"><h4 style="cursor: default;"><i style="margin-right: 20px;" class="fa fa-info" aria-hidden="true"></i><span class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-4 offset-3">Informations</span></h4></div>
+            <div class="card-body">
+                <main>
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div class="card TotalEx mb-4">
+                                    <div class="card-header d-none d-sm-block"><i class="fas fa-chart-bar mr-3"></i>Total Expenses For Materials</div>
+                                    <div class="card-header d-block d-sm-none"><i class="fas fa-chart-bar mr-3"></i>Total Materials Exp.</div>
+                                    <div class="card-body hover" style="text-align:center;">
+                                        <i class="fas fa-hammer" style="margin-right: 20px;"></i>
+                                        <span id="txtTotalExpForMaterial" width="100%" height="40" style="font-size: larger">
+
+
+                                            <span>JD</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="card TotalEx mb-4">
+                                    <div class="card-header d-none d-sm-block"><i class="fas fa-chart-bar mr-3"></i>Total Expenses For ManPower</div>
+                                    <div class="card-header d-block d-sm-none"><i class="fas fa-chart-bar mr-3"></i>Total ManPower Exp.</div>
+                                    <div class="card-body hover" style="text-align:center;">
+                                        <i class="fas fa-tools" style="margin-right: 20px;"></i>
+                                        <span id="txtTotalExpForManPower" width="100%" height="40" style="font-size: larger">
+
+
+                                            <span>JD</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="card TotalEx mb-4">
+                                    <div class="card-header"><i class="fas fa-chart-area mr-3"></i>Total Expenses</div>
+                                    <div class="card-body hover" style="text-align:center;">
+                                        <span id="txtTotalExpenses" width="100%" height="40" style="font-size: larger">
+
+                                            <span>JD</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card mb-4">
+                                    <div class="card-header"><i class="fas fa-tools mr-1"></i> ManPower Cousts</div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="dtManPower" class="table table-fixed table-bordered table-sm" cellspacing="0" width="100%" style="text-align:center;">
+                                                <thead>
+                                                    <tr class="card-header" style=" background-color: darkgray; color: white;font-size: larger">
+                                                        <th class="th-sm" style="width:20px"></th>
+                                                        <th class="th-sm">Parson Name</th>
+                                                        <th class="th-sm">Labour Name</th>
+                                                        <th class="th-sm">Date</th>
+                                                        <th class="th-sm">Coust</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @{ int x = 1; }
+                                                    @foreach (var item in Model.List_Of_ManPowerCousts)
+                                                    {
+                                                        <tr>
+                                                            <td style="width:20px"> @x </td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Parson_Name)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Labour_Name)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                                                            <td class="rowDataSd">@Html.DisplayFor(modelItem => item.Coust)</td>
+                                                        </tr>
+                                                        x++;
+                                                    }
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr style="background-color: darkgray;color: white;font-size: large">
+                                                        <th class="th-sm"></th>
+                                                        <th class="th-sm">Parson Name</th>
+                                                        <th class="th-sm">Labour Name</th>
+                                                        <th class="th-sm">Date</th>
+                                                        <th class="th-sm">Coust</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card mb-4">
+                                    <div class="card-header"><i class="fas fa-hammer mr-1"></i> Material Cousts</div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="dtMaterial" class="table table-fixed table-bordered table-sm" cellspacing="0" width="100%" style="text-align:center;">
+                                                <thead>
+                                                    <tr class="card-header" style=" background-color: darkgray; color: white;font-size: larger">
+                                                        <th class="th-sm" style="width:10px"></th>
+                                                        <th class="th-sm">Parson Name</th>
+                                                        <th class="th-sm">Labour Name</th>
+                                                        <th class="th-sm">Date</th>
+                                                        <th class="th-sm">Quantity</th>
+                                                        <th class="th-sm">Coust</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @{ int y = 1; }
+                                                    @foreach (var item in Model.List_Of_Material_Expenses)
+                                                    {
+                                                        <tr>
+                                                            <td style="width:10px"> @y </td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Material_Name)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Material_Source)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Coust)</td>
+                                                        </tr>
+                                                        y++;
+                                                    }
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr style="background-color: darkgray;color: white;font-size: large">
+                                                        <th class="th-sm"></th>
+                                                        <th class="th-sm">Parson Name</th>
+                                                        <th class="th-sm">Labour Name</th>
+                                                        <th class="th-sm">Date</th>
+                                                        <th class="th-sm">Quantity</th>
+                                                        <th class="th-sm">Coust</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </form>
+
+
+}
+
+

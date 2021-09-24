@@ -1,0 +1,127 @@
+﻿@model Eskaney.Models.Material_Expenses
+
+@{
+    ViewBag.Title = "Add Material";
+    Layout = "~/Areas/Housing_Projects/Views/Shared/_Home.cshtml";
+}
+
+
+@section Head{
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            $("#Material").addClass("active");
+            var test = '@TempData["CompanyName"]'
+
+            debugger
+            var Housing_ID = '@TempData["HousingID"]';
+
+
+            // For Date
+            var now = new Date();
+            var month = (now.getMonth() + 1);
+            var day = now.getDate();
+            if (month < 10)
+                month = "0" + month;
+            if (day < 10)
+                day = "0" + day;
+            var today = now.getFullYear() + '-' + month + '-' + day;
+            $('#txtDate').val(today);
+            /********************************/
+
+            $("#txtHousing_ID").val(id);
+
+
+        });
+    </script>
+
+}
+
+
+@section Body{
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="container">
+            <div class="row col-xl-12" style="margin: 0;">
+                <img class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-4 offset-5" src="~/Image/AddMaterial.png" style="width: 80px;margin-top: 40px;" />
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header"><h4 style="cursor: default;"><i style="margin-right: 20px;" class="fas fa-plus-circle"></i>Add Material Expenses</h4></div>
+            <div class="card-body">
+                <div class="row" style="margin: 0px 0px;width: 90%;">
+                    <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-2 offset-sm-2">
+                        @Html.TextBoxFor((a => a.Material_Name), htmlAttributes: new { @class = "form-control form-control-lg", @id = "txtMaterialName" })
+                        @Html.ValidationMessageFor(a => a.Material_Name, "", new { @class = "text-danger" })
+                        @*<input type="text" id="form1" class="form-control form-control-lg">
+                            <label for="form1">Material Name</label>*@
+                        <label for="txtMaterialName">Material Name</label>
+                    </div>
+                    <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-2 offset-sm-1">
+                        @Html.TextBoxFor((a => a.Material_Source), htmlAttributes: new { @class = "form-control form-control-lg", @id = "txtMaterialExpenses" })
+                        @Html.ValidationMessageFor(a => a.Material_Source, "", new { @class = "text-danger" })
+                        @*<input type="text" id="form1" class="form-control form-control-lg">
+                            <label for="form1">Material Exporter</label>*@
+                        <label for="txtMaterialExpenses">Material Source</label>
+                    </div>
+                </div>
+                <div class="row" style="margin: 0px 0px;width: 90%;">
+                    <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-2 offset-sm-2">
+                        @Html.TextBoxFor((a => a.Quantity), htmlAttributes: new { @class = "form-control form-control-lg", @id = "txtQuantity" })
+                        @Html.ValidationMessageFor(a => a.Quantity, "", new { @class = "text-danger" })
+                        @*<input type="text" id="form1" class="form-control form-control-lg">
+                            <label for="form1">Quantity</label>*@
+                        <label for="txtQuantity">Quantity</label>
+                    </div>
+                    <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-2 offset-sm-1">
+                        @Html.TextBoxFor((a => a.Date), htmlAttributes: new { @class = "form-control form-control-lg", @id = "txtDate" })
+                        @*<input type="date" id="txtDate" class="form-control form-control-lg">*@
+                    </div>
+                </div>
+                <div class="row" style="margin: 0px 0px;width: 90%;">
+                    <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-2 offset-sm-2">
+                        @Html.TextBoxFor((a => a.Coust), htmlAttributes: new { @class = "form-control form-control-lg", @id = "txtCoust" })
+                        @Html.ValidationMessageFor(a => a.Coust, "", new { @class = "text-danger" })
+                        @*<input type="text" id="form1" class="form-control form-control-lg">
+                            <label for="form1">Coust</label>*@
+                        <label for="txtCoust">Coust</label>
+                    </div>
+                    <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-2 offset-sm-1">
+                        @Html.TextBoxFor((a => a.EnvoiceNumber), htmlAttributes: new { @class = "form-control form-control-lg", @id = "txtEnvoiceNumber" })
+                        @Html.ValidationMessageFor(a => a.EnvoiceNumber, "", new { @class = "text-danger" })
+                        @*<input type="text" id="form1" class="form-control form-control-lg">
+                            <label for="form1">Notes</label>*@
+                        <label for="txtEnvoiceNumber">Envoice Number</label>
+                    </div>
+                </div>
+
+                <div class="row" style="margin: 0px 0px;width: 90%;">
+                    <div class="md-form form-lg col-lg-3 col-md-4 col-sm-4 col-6 offset-lg-2 offset-sm-2">
+                        @Html.TextBoxFor((a => a.Notes), htmlAttributes: new { @class = "form-control form-control-lg", @id = "txtNotes" })
+                        @Html.ValidationMessageFor(a => a.Notes)
+                        @*<input type="text" id="form1" class="form-control form-control-lg">
+                            <label for="form1">Notes</label>*@
+                        <label for="txtNotes">Notes</label>
+                    </div>
+                </div>
+                <div class="row" style="margin: 0px 0px;width: 90%;">
+                    <div class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5 offset-4">
+                        <input id="btnSave" type="submit" class="btn blue-gradient" name="btnSave" value="Add" style="border-radius: 15px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    }
+
+}
+
+

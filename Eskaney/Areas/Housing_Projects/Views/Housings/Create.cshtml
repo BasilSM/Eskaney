@@ -1,0 +1,296 @@
+﻿@model Eskaney.Models.ViewModel
+
+@{
+    ViewBag.Title = "Create Housing";
+    Layout = "~/Areas/Home/Views/Shared/_Home.cshtml";
+}
+
+@section Head{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            debugger;
+
+            var id = '@TempData["CompanyID"]';
+
+            // For Date
+            var now = new Date();
+            var month = (now.getMonth() + 1);
+            var day = now.getDate();
+            if (month < 10)
+                month = "0" + month;
+            if (day < 10)
+                day = "0" + day;
+            var today = now.getFullYear() + '-' + month + '-' + day;
+            $('#txtDate').val(today);
+            /********************************/
+
+
+            $("#btnBack").click(function () {
+                debugger;
+                window.location = '@Url.Action("Chose_Project", "Housings", new { @id = @TempData["CompanyID"] })';
+            });
+
+        })
+
+
+    </script>
+
+
+    <style>
+        html,
+        body,
+        header,
+        .view {
+            height: 100%;
+        }
+
+        @@media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .view {
+                height: 1000px;
+            }
+        }
+
+        @@media (min-width: 800px) and (max-width: 850px) {
+            html,
+            body,
+            header,
+            .view {
+                height: 600px;
+            }
+        }
+
+        .btn .fa {
+            margin-left: 3px;
+        }
+
+        .top-nav-collapse {
+            background-color: #424f95 !important;
+        }
+
+        .navbar:not(.top-nav-collapse) {
+            background: transparent !important;
+        }
+
+        @@media (max-width: 991px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #424f95 !important;
+            }
+        }
+
+        .btn-white {
+            color: black !important;
+        }
+
+        h6 {
+            line-height: 1.7;
+        }
+
+        .rgba-gradient {
+            background: -moz-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+            background: -webkit-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+            background: -webkit-gradient(linear, 45deg, from(rgba(42, 27, 161, 0.7)), to(rgba(29, 210, 177, 0.7)));
+            background: -o-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+            background: linear-gradient(to 45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+        }
+    </style>
+}
+
+@section Body{
+
+    @using (Html.BeginForm(Html.BeginForm("Create", "Housings", FormMethod.Post, new { enctype = "multipart/form-data" })))
+    {
+        @Html.AntiForgeryToken()
+
+        <div style="background-image: url('../../../../Image/architecture.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        height: 100%;">
+            <!-- Mask & flexbox options-->
+            <div class="mask rgba-gradient align-items-center" style="height: 100%;">
+                <div class="container">
+                    <div class="container">
+                        <div class="row col-xl-12" style="margin: 0;padding-top: 50px;">
+                            <img class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-4 offset-5" src="~/Image/AddMaterial.png" style="width: 80px;margin-top: 40px;" />
+                        </div>
+                    </div>
+
+                    <div class="card mb-0">
+                        <div class="card-header"><h4 style="cursor: default;"><i style="margin-right: 20px;" class="fas fa-plus-circle"></i>Create Housing</h4></div>
+                        <div class="card-body">
+                            <div class="row" style="margin: 0px 0px;width: 90%;">
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-2">
+                                    @Html.EditorFor(model => model.Housing.Project_Name, new { htmlAttributes = new { @class = "form-control", @id = "inputProjectName" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Project_Name, "", new { @class = "text-danger" })
+
+                                    <label for="inputProjectName">Project Name</label>
+                                </div>
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-1">
+                                    @Html.EditorFor(model => model.Housing.Piece_Number, new { htmlAttributes = new { @class = "form-control", @id = "inputPieceNumber" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Piece_Number, "", new { @class = "text-danger" })
+
+                                    <label for="inputPieceNumber">Piece Number</label>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin: 0px 0px;width: 90%;">
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-2">
+                                    @Html.DropDownListFor(a => a.Housing.Country_ID, new SelectList(Model.List_Of_Countries, "ID", "Name"), "-- Select Country --", new { @class = "form-control" })
+
+                                    @Html.ValidationMessageFor(model => model.Housing.Country_ID, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-1">
+                                    @Html.DropDownListFor(a => a.Housing.City_ID, new SelectList(Model.List_Of_Cities, "ID", "Name"), "-- Select City --", new { @class = "form-control" })
+
+                                    @Html.ValidationMessageFor(model => model.Housing.City_ID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin: 0px 0px;width: 90%;">
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-2">
+                                    @Html.EditorFor(model => model.Housing.Location, new { htmlAttributes = new { @class = "form-control", @id = "inputLocation" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Location, "", new { @class = "text-danger" })
+
+                                    <label for="inputLocation">Location</label>
+                                </div>
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-1">
+                                    @Html.TextBoxFor((model => model.Housing.Date), htmlAttributes: new { @class = "form-control form-control-lg", @id = "txtDate" })
+
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin: 0px 0px;width: 90%;">
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-2">
+                                    @Html.EditorFor(model => model.Housing.Basin_Number, new { htmlAttributes = new { @class = "form-control", @id = "inputBasinNumber" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Basin_Number, "", new { @class = "text-danger" })
+
+                                    <label for="inputBasinNumber">Basin Number</label>
+                                </div>
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-1">
+                                    @Html.EditorFor(model => model.Housing.Land_Area, new { htmlAttributes = new { @class = "form-control", @id = "inputLandArea" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Land_Area, "", new { @class = "text-danger" })
+
+                                    <label for="inputLandArea">Land Area</label>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin: 0px 0px;width: 90%;">
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-2">
+                                    @Html.EditorFor(model => model.Housing.Building_Area, new { htmlAttributes = new { @class = "form-control", @id = "inputBuildingArea" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Building_Area, "", new { @class = "text-danger" })
+
+                                    <label for="inputBuildingArea">Building Area</label>
+                                </div>
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-1">
+                                    @Html.EditorFor(model => model.Housing.Apartments_Total_Area, new { htmlAttributes = new { @class = "form-control", @id = "inputApartmentsTotalArea" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Apartments_Total_Area, "", new { @class = "text-danger" })
+
+                                    <label for="inputApartmentsTotalArea">Apartments Total Area</label>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin: 0px 0px;width: 90%;">
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-2">
+                                    @Html.EditorFor(model => model.Housing.Sarvisas_Total_Area, new { htmlAttributes = new { @class = "form-control", @id = "inputSarvisasTotalArea" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Sarvisas_Total_Area, "", new { @class = "text-danger" })
+
+                                    <label for="inputSarvisasTotalArea">Sarvisas Total Area</label>
+                                </div>
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-1">
+                                    @Html.EditorFor(model => model.Housing.Number_Of_Floors, new { htmlAttributes = new { @class = "form-control", @id = "inputNumberOfFloors" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Number_Of_Floors, "", new { @class = "text-danger" })
+
+                                    <label for="inputNumberOfFloors">Number Of Floors</label>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin: 0px 0px;width: 90%;">
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-2">
+                                    @Html.EditorFor(model => model.Housing.Number_Of_Apartment, new { htmlAttributes = new { @class = "form-control", @id = "inputNumberOfApart" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Number_Of_Apartment, "", new { @class = "text-danger" })
+
+                                    <label for="inputNumberOfApart">Number Of Apartment</label>
+                                </div>
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-1">
+                                    @Html.EditorFor(model => model.Housing.Land_Price, new { htmlAttributes = new { @class = "form-control", @id = "inputLandPrice" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Land_Price, "", new { @class = "text-danger" })
+
+                                    <label for="inputLandPrice">Land Price</label>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin: 0px 0px;width: 90%;">
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-2">
+                                    @Html.EditorFor(model => model.Housing.Land_Registration, new { htmlAttributes = new { @class = "form-control", @id = "inputLandReg" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Land_Registration, "", new { @class = "text-danger" })
+
+                                    <label for="inputLandReg">Land Registration</label>
+                                </div>
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-1">
+                                    @Html.EditorFor(model => model.Housing.Building_Licence, new { htmlAttributes = new { @class = "form-control", @id = "inputBuilding" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Building_Licence, "", new { @class = "text-danger" })
+
+                                    <label for="inputBuilding">Building Licence</label>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin: 0px 0px; width: 90%;">
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-2">
+                                    @Html.EditorFor(model => model.Housing.DesignAndEngineering, new { htmlAttributes = new { @class = "form-control", @id = "inputDesign" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.DesignAndEngineering, "", new { @class = "text-danger" })
+
+                                    <label for="inputDesign">Design And Engineering</label>
+                                </div>
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-1">
+                                    @Html.EditorFor(model => model.Housing.Supervision, new { htmlAttributes = new { @class = "form-control", @id = "inputSuper" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Supervision, "", new { @class = "text-danger" })
+
+                                    <label for="inputSuper">Supervision</label>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin: 0px 0px;width: 90%;">
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-2">
+                                    <input type="file" id="imgfile" name="imgfile" value="" class="form-control" />
+                                    @Html.ValidationMessageFor(model => model.Housing.Logo, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="md-form form-lg col-lg-4 col-md-6 col-sm-4 col-6 offset-lg-1">
+                                    @Html.EditorFor(model => model.Housing.Notes, new { htmlAttributes = new { @class = "form-control", @id = "inputNotes" } })
+                                    @Html.ValidationMessageFor(model => model.Housing.Notes, "", new { @class = "text-danger" })
+                                    <label for="inputNotes">Notes</label>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row" style="margin: 0px 0px;width: 90%;">
+                                <div class="rounded mx-auto d-block">
+                                    <input id="btnBack" type="button" value="Back" class="btn btn-default" style="margin-bottom: 80px;" />
+                                </div>
+
+                                <div class="rounded mx-auto d-block">
+                                    <input type="submit" value="Create" class="btn btn-default" style="margin-bottom: 80px;" />
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+
+
+       
+    }
+
+
+}

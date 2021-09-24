@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="~/Areas/Home/images/favicon.ico" />
+
+
+
+
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+
+    <link href="~/Scripts/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Scripts/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/Content/mdb.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js">
+        // Animations init
+        new WOW().init();
+    </script>
+    <link href="~/Areas/Home/css/Home_Style.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+    <style>
+        html,
+        body,
+        header,
+        .view {
+            height: 100%;
+        }
+
+        @@media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .view {
+                height: 1000px;
+            }
+        }
+
+        @@media (min-width: 800px) and (max-width: 850px) {
+            html,
+            body,
+            header,
+            .view {
+                height: 600px;
+            }
+        }
+
+        .btn .fa {
+            margin-left: 3px;
+        }
+
+        .top-nav-collapse {
+            background-color: #424f95 !important;
+        }
+
+        .navbar:not(.top-nav-collapse) {
+            background: transparent !important;
+        }
+
+        @@media (max-width: 991px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #424f95 !important;
+            }
+        }
+
+        .btn-white {
+            color: black !important;
+        }
+
+        h6 {
+            line-height: 1.7;
+        }
+
+        .rgba-gradient {
+            background: -moz-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+            background: -webkit-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+            background: -webkit-gradient(linear, 45deg, from(rgba(42, 27, 161, 0.7)), to(rgba(29, 210, 177, 0.7)));
+            background: -o-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+            background: linear-gradient(to 45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+        }
+
+        .cyan.darken-3 {
+            background-color: #00498f !important;
+        }
+
+        #fbLogo, #ELogo, #LLogo {
+            font-size: 10px
+        }
+
+            #fbLogo:hover, #ELogo:hover, #LLogo:hover {
+                font-size: 15px
+            }
+    </style>
+
+    @RenderSection("Head")
+
+</head>
+
+<body>
+
+    <header>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="#" style="padding: 0; margin-bottom: -10px;">
+                    <h1 style="font-family: 'Comic Sans MS', cursive, sans-serif;font-style: italic; color:white;">
+                        Eskaney
+                    </h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" style="margin: -4px -4px -3px -4px;"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size: 100%;text-align: center">
+
+                    @if (Session["Company"] == null)
+                    {
+                        <ul class="navbar-nav mr-auto offset-lg-7">
+                            <li class="nav-item">
+                                <a href="@Url.Action("Home" , "Home", new { area = "Home"})" @*id="Home"*@ class="nav-link waves-effect waves-light hover active">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle waves-effect waves-light hover" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">Dropdown</a>
+                                <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item waves-effect waves-light hover" href="#">Action</a>
+                                    <a class="dropdown-item waves-effect waves-light hover" href="#">Another action</a>
+                                    <a class="dropdown-item waves-effect waves-light hover" href="#">Something else here</a>
+                                </div>
+                            </li>
+                            <li id="features" class="nav-item">
+                                <a class="nav-link waves-effect waves-light hover" href="#">Features</a>
+                            </li>
+
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="navbar-nav mr-auto offset-lg-7">
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light hover active" href="@Url.Action("Home" , "Home", new { area = "Home"})">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle waves-effect waves-light hover" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">Dropdown</a>
+                                <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item waves-effect waves-light hover" href="#">Action</a>
+                                    <a class="dropdown-item waves-effect waves-light hover" href="#">Another action</a>
+                                    <a class="dropdown-item waves-effect waves-light hover" href="#">Something else here</a>
+                                </div>
+                            </li>
+                            <li id="features" class="nav-item">
+                                <a class="nav-link waves-effect waves-light hover" href="@Url.Action("Logout", "Home", new { area = "Home" })"> Logout</a>
+                            </li>
+
+                        </ul>
+                    }
+
+
+                    @*<form class="form-inline">
+                        <div class="md-form my-0">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                        </div>
+                    </form>*@
+                </div>
+            </div>
+        </nav>
+
+
+        @RenderSection("Body")
+
+        <!-- Footer -->
+        <footer class="page-footer font-small cyan darken-3">
+
+            <!-- Footer Elements -->
+            <div class="container" style="height:53px;">
+
+                <!-- Grid row-->
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-12 py-0">
+                        <div class="mb-4 flex-center">
+
+                            <!-- Facebook -->
+                            <a id="fbLogo" class="fb-ic">
+                                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+
+                            <!-- Google +-->
+                            <a id="ELogo" class="gplus-ic" href="mailto:Basilmsami@gmail.com?subject=The%20subject%20of%20the%20mail" target="_blank">
+                                <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+
+                            <!--Linkedin -->
+                            <a id="LLogo" class="li-ic" href="http://www.linkedin.com/in/basil-mahameed" target="_blank">
+                                <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row-->
+
+            </div>
+            <!-- Footer Elements -->
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">
+                © 2020 Copyright:
+                <a href="@Url.Action("Home" , "Home", new { area = "Home"})"> Eskaney.com</a>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
+        @*<div class="py-1 mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Eskaney 2020</div>
+                    <div class="col-lg-4 text-muted">Copyright &copy; Eskaney 2020</div>
+                    <div class="col-lg-1" style="text-align: center;">
+                        <a href="#"><img src="~/Image/chrome-512.png" style="width: 50%;" /></a>
+                    </div>
+                    <div class="col-lg-1" style="text-align: center;">
+                        <a href="#"><img src="~/Image/iconfinder_2018_social_media_popular_app_logo_facebook_3225194 (1).png" style="width: 50%;" /></a>
+                    </div>
+                    <div class="col-lg-1" style="text-align: center;">
+                        <a href="#"><img src="~/Image/chrome-512.png" style="width: 50%;" /></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+    </header>
+
+    
+
+    <script src="~/Scripts/mdb.min.js"></script>
+
+    <script src="~/Areas/js/Eskaney.js"></script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+﻿@model Eskaney.Models.ViewModel
+@*@model IEnumerable<Eskaney.Models.ViewModel>*@
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Areas/Housing_Projects/Views/Shared/_Home.cshtml";
+}
+
+
+@section Head{
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var id = '@TempData["HousingID"]';
+
+            debugger;
+
+            $("#test").val(id);
+
+            $('#tblManPowerInfo').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+
+            $('#tblMaterialInfo').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+
+
+            //$.ajax({
+            //    type: 'get',
+            //    url: '/Housings/FillHome_Page?id=x'.replace('x', id),
+            //    //url: '/Housings/FillHome_Page',
+            //    //data: { id: Housing_ID },
+            //    dataType: 'json',
+            //    success: function (data) {
+
+            //        debugger;
+            //        $("#txtTitle").html(data[0].Project_Name);
+            //        $("#txtPieceNumber").html(data[0].Piece_Number);
+            //        $(".txtLocation").html(data[0].Location);
+            //        $("#txtBasinNumber").html(data[0].Basin_Number);
+            //        $("#txtLandArea").html(data[0].Land_Area + " M<sup>2</sup>‏");
+            //        $("#txtBuildingArea").html(data[0].Building_Area + " M<sup>2</sup>‏");
+            //        $("#txtNumberOfFloors").html(data[0].Number_Of_Floors);
+            //        $("#txtNumberOfApartment").html(data[0].Number_Of_Apartment);
+            //        $("#txtNotes").html(data[0].Notes);
+            //    },
+            //    error: function () {
+
+            //    }
+            //});
+
+            debugger;
+
+
+            //$.ajax({
+            //    type: 'get',
+            //    url: '/Housings/FillManPowerInfo',
+            //    dataType: 'json',
+            //    success: function (data) {
+
+            //        debugger
+            //        var x = 1;
+
+            //        $.each(data, function (index, val) {
+            //            debugger
+            //            var txtParsonName = data[index].Parson_Name;
+            //            var txtLabourName = data[index].Labour_Name;
+            //            var txtParsonPhone = data[index].Parson_Phone;
+
+            //            var rows = "<tr>"
+            //                + "<td>" + x + "</td>"
+            //                + "<td>" + txtParsonName + "</td>"
+            //                + "<td>" + txtLabourName + "</td>"
+            //                + "<td>" + txtParsonPhone + "</td> </tr>";
+            //            $("#tblManPowerInfo tbody").append(rows);
+
+            //            x++;
+
+
+
+            //        });
+
+            //    },
+            //    error: function () {
+
+            //    }
+            //});
+
+            $("#txtTitle").val().Project_Name;
+
+
+
+        });
+
+        // Stop going back after log off
+        //debugger;
+        //if (window.history.forward(1) != null)
+        //    window.history.forward(1);
+        /*******************************/
+
+
+    </script>
+    
+    <style>
+        #tblManPowerInfo_filter label input, #tblMaterialInfo_filter label input {
+            width: 68%;
+        }
+
+        .container{
+            padding: 0px;
+        }
+
+        .row {
+            margin: 0px 0px;
+        }
+    </style>
+   
+
+}
+
+
+
+@section Body{
+
+    <form action="Home_Page">
+
+        <div class="container">
+            <div class="row col-xl-12" style="margin: 0;">
+                <img class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-5 offset-4" src="~/Image/kindpng_75446.png" style="width: 200px;margin-top: 40px;" />
+            </div>
+        </div>
+
+
+        <div class="card mb-4">
+            <div class="card-header"><h4 style="cursor: default;"><i style="margin-right: 20px;" class="fas fa-home"></i><span id="txtTitle" class="offset-xl-5 offset-lg-5 offset-md-5 offset-sm-4 offset-3">Home Page</span></h4></div>
+            <div class="card-body">
+                <main>
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card mb-4">
+                                    <div class="card-header"><i class="fa fa-male" aria-hidden="true"></i> ManPower</div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+
+                                            <table class="table table-bordered" id="tblManPowerInfo" width="100%" cellspacing="0" style="text-align: center;">
+                                                <thead style="background-color: #464A5D;color: white;">
+                                                    <tr>
+                                                        <th> # </th>
+                                                        <th>Name</th>
+                                                        <th>Labour</th>
+                                                        <th>Phone</th>
+                                                        <th>Notes</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @{ int x = 1;}
+                                                    @foreach (var item in Model.List_Of_ManPowerCousts)
+                                                    {
+                                                        <tr>
+                                                            <td> @x </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Parson_Name)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Labour_Name)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Parson_Phone)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Notes)
+                                                            </td>
+                                                        </tr>
+                                                        x++;
+                                                    }
+                                                </tbody>
+                                                <tfoot style="background-color: #464A5D;color: white;">
+                                                    <tr>
+                                                        <th> # </th>
+                                                        <th>Name</th>
+                                                        <th>Labour</th>
+                                                        <th>Phone</th>
+                                                        <th>Notes</th>
+                                                    </tr>
+                                                </tfoot>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card mb-4">
+                                    <div class="card-header"><i class="fas fa-hammer"></i> Material Expenses</div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+
+                                            <table class="table table-bordered" id="tblMaterialInfo" width="100%" cellspacing="0" style="text-align: center;">
+                                                <thead style="background-color: #464A5D;color: white;">
+                                                    <tr>
+                                                        <th> # </th>
+                                                        <th>Name</th>
+                                                        <th>Labour</th>
+                                                        <th>Phone</th>
+                                                        <th>Notes</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @{ int y = 1;}
+                                                    @foreach (var item in Model.List_Of_Material_Expenses)
+                                                    {
+                                                        <tr>
+                                                            <td> @y </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Material_Name)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Material_Source)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Notes)
+                                                            </td>
+                                                        </tr>
+                                                        y++;
+                                                    }
+                                                </tbody>
+                                                <tfoot style="background-color: #464A5D;color: white;">
+                                                    <tr>
+                                                        <th> # </th>
+                                                        <th>Name</th>
+                                                        <th>Labour</th>
+                                                        <th>Phone</th>
+                                                        <th>Notes</th>
+                                                    </tr>
+                                                </tfoot>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </form>
+
+
+}
+
+
+
+

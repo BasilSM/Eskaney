@@ -1,0 +1,193 @@
+﻿@model Eskaney.Models.Housing
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Home/Views/Shared/_Home.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Housing</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.city.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.company.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.company.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.country.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.country.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Piece_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Piece_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Basin_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Basin_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Land_Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Land_Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Building_Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Building_Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apartments_Total_Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apartments_Total_Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sarvisas_Total_Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sarvisas_Total_Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number_Of_Floors)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number_Of_Floors)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number_Of_Apartment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number_Of_Apartment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Land_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Land_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Land_Registration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Land_Registration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Building_Licence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Building_Licence)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DesignAndEngineering)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DesignAndEngineering)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supervision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supervision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Logo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Logo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

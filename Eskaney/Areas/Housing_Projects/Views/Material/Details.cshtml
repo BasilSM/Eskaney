@@ -1,0 +1,90 @@
+﻿@model Eskaney.Models.Material_Expenses
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Housing_Projects/Views/Shared/_Home.cshtml";
+}
+
+@section Head{}
+
+@section Body{
+
+
+    <h2>Details</h2>
+
+    <div>
+        <h4>Material_Expenses</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.housing.Project_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.housing.Project_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Material_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Material_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Material_Source)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Material_Source)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Coust)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Coust)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EnvoiceNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EnvoiceNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Notes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Notes)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+

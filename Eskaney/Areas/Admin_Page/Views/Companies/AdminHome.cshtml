@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Eskaney.Models.Company>
+
+@{
+    ViewBag.Title = "Admin Home";
+    Layout = "~/Areas/Home/Views/Shared/_Home.cshtml";
+}
+
+@section Head{
+    <link href="~/Areas/Home/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/fonts/iconic/css/material-design-iconic-font.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/animate/animate.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/animsition/css/animsition.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/select2/select2.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+
+
+    <link href="~/Areas/Home/css/util.css" rel="stylesheet" />
+    <link href="~/Areas/Home/css/main.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+
+    <style>
+        @@media (min-width: 768px) {
+            .col-md-5 {
+                -ms-flex: 0 0 41.666667%;
+                flex: 0 0 41.666667%;
+                max-width: 37.666667%;
+            }
+        }
+
+        @@media (min-width: 992px) {
+
+            .col-lg-3 {
+                -ms-flex: 0 0 25%;
+                flex: 0 0 25%;
+                max-width: 24%;
+            }
+        }
+    </style>
+
+}
+
+@section Body{
+
+    <!-- Full Page Intro -->
+    <div class="" style="
+        background-image: url('../../../../Image/architecture.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-gradient align-items-center">
+
+            <div class="container">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="white-text text-center text-md-left mt-xl-8 mb-5 wow fadeInLeft" data-wow-delay="0.3s" style="margin-top: 90px">
+                        <!--Grid column-->
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <h2>@Session["Admin"]</h2>
+                                </div>
+                                <div class="col-6 offset-2">
+                                    <h2><img src="@Session["AdminLogo"]" alt="Alternate Text" width="50" height="50" style=" width: 50%;height: 50%;" /></h2>
+                                    @*<h4 style="color:red;">@TempData["CompanyName"]</h4>*@
+                                </div>
+
+
+                                <div class="col">
+                                    <p>
+                                        <a href="@Url.Action("Create", "Companies")" class="btn btn-primary" title="Click Here To Add New Company">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                            New Company
+                                        </a>
+                                        @*@Html.ActionLink("New Company", "Create", null, htmlAttributes: new { @class = "btn btn-primary btn-lg" })*@
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="card col-lg-3 col-md-5 col-sm-10 col-9 wrap-login100" style="color:black;">
+                                        <div class="card-body">
+                                            <span class="login100-form-logo">
+                                                <img src="@Url.Content(item.Logo)" alt="Alternate Text" width="50" height="50" />
+                                            </span>
+                                            <h5 class="card-title" style="text-align:center;color: white;">@Html.DisplayFor(modelItem => item.Name)</h5>
+                                            <p class="card-text" style="color: white;">Phone: @Html.DisplayFor(modelItem => item.Phone)</p>
+                                            <p class="card-text" style="color: white;">Email: @Html.DisplayFor(modelItem => item.Email)</p>
+                                            <br />
+
+
+                                            <a href="@Url.Action("Edit", "Companies", new { id = item.ID })" class="btn btn-warning">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                                Edit
+                                            </a>
+                                            |
+                                            <a href="@Url.Action("Delete", "Companies", new { id = item.ID })" class="btn btn-danger">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                                Delete
+                                            </a>
+                                            <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" />
+                                        </div>
+                                    </div>
+
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+}

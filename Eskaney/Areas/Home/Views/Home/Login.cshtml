@@ -1,0 +1,332 @@
+﻿@model Eskaney.Models.Company
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/Home/Views/Shared/_Home.cshtml";
+}
+
+
+
+@section Head{
+
+    <link href="~/Areas/Home/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/fonts/iconic/css/material-design-iconic-font.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/animate/animate.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/animsition/css/animsition.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/select2/select2.min.css" rel="stylesheet" />
+    <link href="~/Areas/Home/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+
+
+    <link href="~/Areas/Home/css/util.css" rel="stylesheet" />
+    <link href="~/Areas/Home/css/main.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+
+
+    <link href="~/Areas/Home/css/Home_Style.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#animate").animate({
+                top: '50%',
+                left: '500px',
+                borderRadius: '15px'
+            }, 2000);
+
+        });
+    </script>
+
+    <style>
+
+        @@media (min-width: 768px) {
+            .col-md-4 {
+                -ms-flex: 0 0 33.333333%;
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+                margin-top: 230px;
+            }
+
+            .wrap-input100{
+                margin-bottom: 10px;
+            }
+
+            .contact100-form-checkbox{
+                padding-bottom: 10px;
+            }
+        }
+
+        @@media (min-width: 1200px) {
+            .mt-xl-5, .my-xl-5 {
+                margin-top: 13% !important;
+            }
+
+            .mt-xl-8 {
+                margin-top: 15rem !important;
+            }
+        }
+
+
+        @@media (min-width: 1024px) {
+            .wrap-login100 {
+                padding-bottom: 0px;
+                margin-top: 30px;
+            }
+            .login100-form-title{
+                padding: 10px;
+            }
+
+            .wrap-input100{
+                margin-bottom: 10px;
+            }
+
+            .contact100-form-checkbox{
+                padding-bottom: 10px;
+            }
+
+        }
+
+        @@media (min-width: 1440px) {
+            .wrap-login100 {
+                margin-top: 60px;
+            }
+        }
+
+        @@media (min-width: 740px) and (max-width: 1022px) {
+            .wrap-login100 {
+                padding-bottom: 0px;
+                margin-top: 20px;
+            }
+
+            .login100-form-title {
+                padding: 10px;
+            }
+        }
+
+        
+            .container-login100 {
+                margin-top: 30px;
+            }
+        
+    </style>
+
+    <script type="text/javascript">
+
+
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+
+
+
+        // Stop going back after log off
+        debugger;
+        window.onload = function () { Clear(); }
+        function Clear() {
+            var Backlen = history.length;
+            if (Backlen > 0) history.go(-Backlen);
+        }
+        /*******************************/
+
+
+
+
+
+    </script>
+
+    <style>
+        @@media (max-width: 750px) {
+
+            #homeImg {
+                visibility: hidden;
+            }
+        }
+
+        @@media (max-width: 750px) {
+
+            .login100-form-title {
+                line-height: 0.0;
+            }
+        }
+
+
+        @@media (min-width: 320px) and (max-width: 576px) {
+            .mask {
+                height: 870px;
+            }
+
+            .wrap-login100 {
+                margin-left: 0;
+            }
+
+        }
+
+        @@media (max-width: 1440px) and (min-width: 1025px) {
+            .container-login100 {
+                 margin-top: 0; 
+            }
+            .wrap-login100 {
+                padding-bottom: 0px;
+                margin-top: 65px;
+            }
+        }
+
+        @@media (max-width: 424px) and (min-width: 376px) {
+            .mask {
+                height: 470px;
+            }
+        }
+
+        @@media (max-width: 1024px) and (min-width: 767px) {
+            .mask {
+                height: 580px;
+            }
+
+        }
+
+
+
+        @@media(max-width: 740px) {
+            html, body, header, .view {
+                height: 790px;
+            }
+        }
+    </style>
+}
+
+
+
+@section Body{
+
+    
+
+    <form action="Login" method="post" class="" style="
+        background-image: url('../../../../Image/architecture.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-gradient align-items-center">
+            <div class="container">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-md-7 white-text text-center text-md-left mt-xl-4 mt-lg-5 mb-3 mt-sm-5 mt-2 wow fadeInLeft" data-wow-delay="0.3s" style="margin-top: 90px;padding-bottom: 100px">
+
+                        <div class="limiter">
+                            <div class="container-login100" style="margin-bottom: -120px;">
+                                <div class="wrap-login100" style="padding-bottom: 0px;">
+                                    <div class="login100-form validate-form" style="padding: 10px;">
+                                        <span class="login100-form-logo">
+                                            <img src="~/Image/kisspng-house-home-inspection-real-estate-hughesville-5ce3da57e889d9.7636396815584364399525.png" style="width: 100px;" />
+                                        </span>
+
+                                        <span class="login100-form-title p-b-34 p-t-27">
+                                            Log in
+                                        </span>
+                                        <div class="wrap-input100 validate-input" data-validate="Enter Email">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @id = "txtEmail", @class = "input100", type = "text", name = "username", placeholder = "Email" } })
+                                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                                        </div>
+                                        @*<div class="wrap-input100 validate-input" data-validate="Enter username">
+                            <input id="txtName" class="input100" type="text" name="username" placeholder="Username">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                            </div>*@
+
+
+                                        <div class="wrap-input100 validate-input" data-validate="Enter password" style="margin-top: 25px;">
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @id = "txtPass", @class = "input100", type = "password", name = "pass", placeholder = "Password" } })
+                                            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="contact100-form-checkbox">
+                                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                                            <label class="label-checkbox100" for="ckb1">
+                                                Remember me
+                                            </label>
+                                        </div>
+
+
+                                        <div class="container-login100-form-btn">
+                                            <div>
+                                                <input type="submit" value="Login" class="login100-form-btn" />
+                                            </div>
+                                        </div>
+
+                                        @*<div class="container-login100-form-btn">
+
+                            <input type="submit" value="Login" class="login100-form-btn" />
+                            <a id="btnLogin">
+                            <span class="login100-form-btn">
+                            </a>
+
+
+                            <button class="login100-form-btn">Login</button>
+                            </div>*@
+
+                                        <div class="text-center p-t-90">
+                                            <a class="txt1" href="#">
+                                                Forgot Password?
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Grid column-->
+                    <div id="animate" class="col-lg-5 col-md-4 col-xl-5 mt-xl-6 mt-md-6 col-sm-9 offset-md-1 offset-sm-1 col-10 offset-1 mt-xl-8 wow fadeInRight d-none d-lg-block d-xl-block" data-wow-delay="0.3s" style="padding: 0;margin-top: -50%;margin-left:-400px;">
+                        @*<img src="https://mdbootstrap.com/img/Mockups/Transparent/Small/admin-new.png" alt="" class="img-fluid">*@
+
+                        <img src="~/Image/HomePage.png" alt="" class="img-fluid" style="height: 230px;width: 100%;" />
+                    </div>
+
+                    <!--Grid column-->
+                    <div class="col-lg-5 col-md-4 col-xl-5 mt-xl-6 mt-md-6 col-sm-9 offset-md-1 offset-sm-1 col-10 offset-1 mt-xl-8 wow fadeInRight d-block d-sm-block d-md-block d-lg-block d-xl-none" data-wow-delay="0.3s" style="padding: 0;">
+                        @*<img src="https://mdbootstrap.com/img/Mockups/Transparent/Small/admin-new.png" alt="" class="img-fluid">*@
+
+                        <img src="~/Image/HomePage.png" alt="" class="img-fluid" style="height: 230px;width: 100%;" />
+                    </div>
+                    <!--Grid column-->
+
+                    @*<div class="col-lg-5 col-md-4 col-xl-5 col-sm-9 col-10 wow fadeInRight d-none d-sm-block" data-wow-delay="0.3s" style="padding: 0;">
+                        <img id="homeImg" src="~/Image/HomePage.png" alt="" class="img-fluid" style="height: 230px;width: 100%;" />
+                    </div>*@
+                </div>
+
+                <div id="dropDownSelect1"></div>
+            </div>
+        </div>
+
+
+
+
+
+
+        @*<script src="~/Areas/Home/vendor/jquery/jquery-3.2.1.min.js"></script>
+            <script src="~/Areas/Home/vendor/animsition/js/animsition.min.js"></script>
+            <script src="~/Areas/Home/vendor/bootstrap/js/popper.js"></script>
+            <script src="~/Areas/Home/vendor/select2/select2.min.js"></script>
+
+
+            <script src="~/Areas/Home/vendor/daterangepicker/moment.min.js"></script>
+            <script src="~/Areas/Home/vendor/daterangepicker/daterangepicker.js"></script>
+
+            <script src="~/Areas/Home/vendor/countdowntime/countdowntime.js"></script>*@
+
+        <script src="~/Areas/Home/JS/main.js"></script>
+
+    </form>
+
+}
